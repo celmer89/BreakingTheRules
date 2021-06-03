@@ -44,7 +44,7 @@ public class CarController : MonoBehaviour
 
     public bool ReachedDestination()
     {
-        return AlmostEqual(m_destination, transform.position, 0.5f);
+        return AlmostEqual(m_destination, transform.position, 0.7f);
     }
 
     public void SetLightColor(LightColor color)
@@ -59,6 +59,11 @@ public class CarController : MonoBehaviour
     public void SetIsRoadhog(bool isRoadhog)
     {
         m_IsRoadhog = isRoadhog;
+    }
+
+    public void SetHighlight(bool highlight)
+    {
+        //m_IsRoadhog = isRoadhog;
     }
 
     public void Busted()

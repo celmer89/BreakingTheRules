@@ -50,10 +50,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentVelocity: 1
-  AngularVelocity: 1
+  AngularVelocity: 1.5
   Acceleration: 5
-  TargetVelocity: 5
-  AllowedVelocity: 5
+  TargetVelocity: 6
+  AllowedVelocity: 6
   Honks:
   - {fileID: 8300000, guid: c7a3309822e9f664ab66adb0fcbe101a, type: 3}
   - {fileID: 8300000, guid: ea5c9cf8adb2e8c4490fdd86b3351e16, type: 3}
@@ -103,7 +103,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 2, z: 5.3}
+  m_Size: {x: 2.35, y: 1.9, z: 5.3}
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!65 &294704814184901451
 BoxCollider:
