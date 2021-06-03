@@ -8,6 +8,7 @@ public class CarController : MonoBehaviour
     private void Awake()
     {
         m_rigidBody = GetComponent<Rigidbody>();
+        m_AudioSource = GetComponent<AudioSource>();
     }
     // Start is called before the first frame update
     void Start()
@@ -75,6 +76,8 @@ public class CarController : MonoBehaviour
         if (other.gameObject != gameObject && other.gameObject.tag == "Car" && !other.isTrigger)
         {
             m_IsBlocked = true;
+            int it = Random.Range(0, Honks.Count);
+            m_AudioSource.PlayOneShot(Honks[it]);
         }
     }
 
@@ -93,6 +96,7 @@ public class CarController : MonoBehaviour
 
     public float TargetVelocity = 5.0f;
     public float AllowedVelocity = 5.0f;
+    public List<AudioClip> Honks = new List<AudioClip>();
 
     private static bool AlmostEqual(Vector3 v1, Vector3 v2, float precision)
     {
@@ -111,5 +115,6 @@ public class CarController : MonoBehaviour
     private LightColor m_lightColor = LightColor.None;
     private bool m_IsRoadhog = false;
     private bool m_IsBlocked = false;
+    private AudioSource m_AudioSource;
 
 }

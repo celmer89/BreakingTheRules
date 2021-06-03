@@ -72247,10 +72247,54 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 866341628843181885, guid: 851ef0768b4aa8a419364cfd3bf0a451, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2822699970813770892, guid: 851ef0768b4aa8a419364cfd3bf0a451, type: 3}
       propertyPath: currentWaypoint
       value: 
       objectReference: {fileID: 821258837}
+    - target: {fileID: 2822699970813770893, guid: 851ef0768b4aa8a419364cfd3bf0a451, type: 3}
+      propertyPath: Honks.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2822699970813770893, guid: 851ef0768b4aa8a419364cfd3bf0a451, type: 3}
+      propertyPath: Honks.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: ea5c9cf8adb2e8c4490fdd86b3351e16, type: 3}
+    - target: {fileID: 2822699970813770893, guid: 851ef0768b4aa8a419364cfd3bf0a451, type: 3}
+      propertyPath: Honks.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 327122c06eb9b4144801cb90233b2842, type: 3}
+    - target: {fileID: 2822699970813770893, guid: 851ef0768b4aa8a419364cfd3bf0a451, type: 3}
+      propertyPath: Honks.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 33619e61fd940b04c93c60548d087b98, type: 3}
+    - target: {fileID: 2822699970813770893, guid: 851ef0768b4aa8a419364cfd3bf0a451, type: 3}
+      propertyPath: Honks.Array.data[4]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2822699970813770893, guid: 851ef0768b4aa8a419364cfd3bf0a451, type: 3}
+      propertyPath: Honks.Array.data[5]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2822699970813770893, guid: 851ef0768b4aa8a419364cfd3bf0a451, type: 3}
+      propertyPath: Honks.Array.data[6]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2822699970813770893, guid: 851ef0768b4aa8a419364cfd3bf0a451, type: 3}
+      propertyPath: Honks.Array.data[7]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2822699970813770893, guid: 851ef0768b4aa8a419364cfd3bf0a451, type: 3}
+      propertyPath: Honks.Array.data[8]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2822699970813770893, guid: 851ef0768b4aa8a419364cfd3bf0a451, type: 3}
+      propertyPath: Honks.Array.data[9]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2822699970813770894, guid: 851ef0768b4aa8a419364cfd3bf0a451, type: 3}
       propertyPath: m_RootOrder
       value: 7
