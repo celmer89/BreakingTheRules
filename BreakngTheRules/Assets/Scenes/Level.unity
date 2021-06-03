@@ -48239,6 +48239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 708f1bfee8a5ba742a2d6c3939a21dde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RoadhogDuration: 10
+  RoadhogInterval: 10
 --- !u!4 &1472207121
 Transform:
   m_ObjectHideFlags: 0
@@ -72966,11 +72968,7 @@ PrefabInstance:
       objectReference: {fileID: 821258837}
     - target: {fileID: 2822699970813770893, guid: 851ef0768b4aa8a419364cfd3bf0a451, type: 3}
       propertyPath: RedhogVelocity
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2822699970813770893, guid: 851ef0768b4aa8a419364cfd3bf0a451, type: 3}
-      propertyPath: AllowedVelocity
-      value: 7
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 2822699970813770894, guid: 851ef0768b4aa8a419364cfd3bf0a451, type: 3}
       propertyPath: m_RootOrder

@@ -43,10 +43,16 @@ public class GameLogic : MonoBehaviour
                 if (hit_object.CompareTag("Car") && !hit.collider.isTrigger)
                 {
                     SetHitCursor();
+                    m_LastHitCar = hit_object.GetComponent<CarController>();
+                    m_LastHitCar.SetHighlight(true);
                 }
                 else
                 {
                     SetBaseCursor();
+                    if(m_LastHitCar)
+                    {
+                        m_LastHitCar.SetHighlight(false);
+                    }
                 }
             }
             else
@@ -55,4 +61,6 @@ public class GameLogic : MonoBehaviour
             }
         }
     }
+
+    private CarController m_LastHitCar = null;
 }

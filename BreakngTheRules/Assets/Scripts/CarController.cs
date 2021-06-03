@@ -16,6 +16,7 @@ public class CarController : MonoBehaviour
     public float RedhogDuration = 5.0f;
     public List<AudioClip> Honks = new List<AudioClip>();
     public MeshRenderer meshRenderer;
+    public GameObject HighLight;
     public GameObject RedhogHelper;
 
     private void Awake()
@@ -127,13 +128,12 @@ public class CarController : MonoBehaviour
             RedhogDuration = duration;
             m_RedhogeTimeRemaining = RedhogDuration;
             RedhogHelper.SetActive(true);
-            //meshRenderer.material.color = new Color(1f, 1f, 1f, 0.3f);
         }
     }
 
     public void SetHighlight(bool highlight)
     {
-
+        HighLight.SetActive(highlight);
     }
 
     public void Busted()
