@@ -40,7 +40,7 @@ public class GameLogic : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 GameObject hit_object = hit.transform.gameObject;
-                if (hit_object.CompareTag("Car"))
+                if (hit_object.CompareTag("Car") && !hit.collider.isTrigger)
                 {
                     SetHitCursor();
                 }
