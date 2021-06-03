@@ -19,7 +19,7 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool stop = m_lightColor == LightColor.Red || m_lightColor == LightColor.Yellow || m_lightColor == LightColor.RedYellow || m_IsBlocked;
+        bool stop = m_lightColor == LightColor.Red || m_lightColor == LightColor.Yellow || m_lightColor == LightColor.RedYellow || (m_blockingCars > 0);
         if (stop)
         {
              TargetVelocity = 0;
@@ -30,32 +30,42 @@ public class CarController : MonoBehaviour
         }
 
         // rotate
-        if (!stop)// dont rotate during stop
+       // if (!stop)// dont rotate during stop
         {
             Vector3 targetForward = m_destination - transform.position;
             transform.forward = Vector3.Lerp(transform.forward, targetForward, Time.deltaTime * AngularVelocity);
         }
- 
+
         // set velocity
-        CurrentVelocity = Mathf.Lerp(CurrentVelocity, TargetVelocity, Time.deltaTime * Acceleration);
+        CurrentVelocity = Mathf.Lerp(CurrentVelocity, TargetVelocity, Time.deltaTime * Acceleration); // vTargetVelocity;// 
         if (Mathf.Abs(CurrentVelocity) > 0.1) 
         {
-            m_rigidBody.velocity = transform.forward * CurrentVelocity;
+            transform.position = transform.position + transform.forward * CurrentVelocity * Time.deltaTime;
+            //m_rigidBody.velocity = transform.forward * CurrentVelocity;
         }
         else
         {
             m_rigidBody.velocity = Vector3.zero;
+        }
+
+        // anti blocking
+        m_TimeSinceLastWaypoint += Time.deltaTime;
+        if(m_blockingCars > 0 && m_TimeSinceLastWaypoint > 15)
+        {
+            gameObject.transform.position = new Vector3(9999f, 9999f, 99999f);
+            Destroy(gameObject);
         }
     }
 
     public void SetDestination( Vector3 dst)
     {
         m_destination = dst;
+        m_TimeSinceLastWaypoint = 0;
     }
 
     public bool ReachedDestination()
     {
-        return AlmostEqual(m_destination, transform.position, 0.7f);
+        return AlmostEqual(m_destination, transform.position, 1f);
     }
 
     public void SetLightColor(LightColor color)
@@ -74,7 +84,7 @@ public class CarController : MonoBehaviour
 
     public void SetHighlight(bool highlight)
     {
-        //m_IsRoadhog = isRoadhog;
+
     }
 
     public void Busted()
@@ -91,7 +101,12 @@ public class CarController : MonoBehaviour
     {
         if (other.gameObject != gameObject && other.gameObject.tag == "Car" && !other.isTrigger)
         {
-            m_IsBlocked = true;
+            if (gameObject.name == "Car (2)")
+            {
+                int k = 10;
+            }
+
+            m_blockingCars++;
             int it = Random.Range(0, Honks.Count);
             m_AudioSource.PlayOneShot(Honks[it]);
         }
@@ -99,9 +114,19 @@ public class CarController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Car")
+        if (other.gameObject != gameObject  && other.gameObject.tag == "Car" && !other.isTrigger)
         {
-            m_IsBlocked = false;
+            if (gameObject.name == "Car (2)")
+            {
+                int k = 10;
+            }
+
+            m_blockingCars--;
+
+            if (m_blockingCars < 0)
+            {
+                m_blockingCars = 0;
+            }
         }
     }
 
@@ -130,7 +155,8 @@ public class CarController : MonoBehaviour
     private Rigidbody m_rigidBody;
     private LightColor m_lightColor = LightColor.None;
     private bool m_IsRoadhog = false;
-    private bool m_IsBlocked = false;
+    private int m_blockingCars = 0;
     private AudioSource m_AudioSource;
+    private float m_TimeSinceLastWaypoint = 0;
 
 }

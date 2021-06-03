@@ -69,7 +69,7 @@ public class TrafficLight : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Car")
+        if (other.gameObject.tag == "Car" && !other.isTrigger)
         {
             CarController car = other.gameObject.GetComponent<CarController>();
             car.SetLightColor(m_lightColor);
@@ -79,7 +79,7 @@ public class TrafficLight : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Car")
+        if (other.gameObject.tag == "Car" && !other.isTrigger)
         {
             CarController car = other.gameObject.GetComponent<CarController>();
             car.SetLightColor(LightColor.None);
