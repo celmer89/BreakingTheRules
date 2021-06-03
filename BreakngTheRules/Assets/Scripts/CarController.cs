@@ -19,7 +19,8 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if( m_lightColor == LightColor.Red || m_lightColor == LightColor.Yellow || m_lightColor == LightColor.RedYellow || m_IsBlocked)
+        bool stop = m_lightColor == LightColor.Red || m_lightColor == LightColor.Yellow || m_lightColor == LightColor.RedYellow || m_IsBlocked;
+        if (stop)
         {
              TargetVelocity = 0;
         }
@@ -29,12 +30,22 @@ public class CarController : MonoBehaviour
         }
 
         // rotate
-        Vector3 targetForward = m_destination - transform.position;
-        transform.forward = Vector3.Lerp(transform.forward, targetForward, Time.deltaTime * AngularVelocity);
-
+        if (!stop)// dont rotate during stop
+        {
+            Vector3 targetForward = m_destination - transform.position;
+            transform.forward = Vector3.Lerp(transform.forward, targetForward, Time.deltaTime * AngularVelocity);
+        }
+ 
         // set velocity
         CurrentVelocity = Mathf.Lerp(CurrentVelocity, TargetVelocity, Time.deltaTime * Acceleration);
-        m_rigidBody.velocity = transform.forward * CurrentVelocity;
+        if (Mathf.Abs(CurrentVelocity) > 0.1) 
+        {
+            m_rigidBody.velocity = transform.forward * CurrentVelocity;
+        }
+        else
+        {
+            m_rigidBody.velocity = Vector3.zero;
+        }
     }
 
     public void SetDestination( Vector3 dst)
