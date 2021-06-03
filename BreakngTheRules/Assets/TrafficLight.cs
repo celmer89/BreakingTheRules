@@ -72,7 +72,7 @@ public class TrafficLight : MonoBehaviour
         if (other.gameObject.tag == "Car")
         {
             CarController car = other.gameObject.GetComponent<CarController>();
-            car.SetLightColor(LightColor.Red);
+            car.SetLightColor(m_lightColor);
             m_cars.Add(car);
         }
     }

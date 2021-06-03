@@ -18,19 +18,15 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (ReachedDestination())
-        //{
-        //    return;
-        //}
-
-        if( m_lightColor == LightColor.Red || m_lightColor == LightColor.Yellow || m_lightColor == LightColor.RedYellow)
+        if( m_lightColor == LightColor.Red || m_lightColor == LightColor.Yellow || m_lightColor == LightColor.RedYellow || m_IsBlocked)
         {
-            TargetVelocity = 0;
+             TargetVelocity = 0;
         }
         else
         {
-            TargetVelocity = AllowedVelocity;
+            TargetVelocity = AllowedVelocity - Random.Range(0,0.5f);
         }
+
         // rotate
         Vector3 targetForward = m_destination - transform.position;
         transform.forward = Vector3.Lerp(transform.forward, targetForward, Time.deltaTime * AngularVelocity);
@@ -74,6 +70,23 @@ public class CarController : MonoBehaviour
        return m_IsRoadhog;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject != gameObject && other.gameObject.tag == "Car" && !other.isTrigger)
+        {
+            m_IsBlocked = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Car")
+        {
+            m_IsBlocked = false;
+        }
+    }
+
+
     public float CurrentVelocity = 1.0f;
     public float AngularVelocity = 1f;
     public float Acceleration = 1.0f;
@@ -97,5 +110,6 @@ public class CarController : MonoBehaviour
     private Rigidbody m_rigidBody;
     private LightColor m_lightColor = LightColor.None;
     private bool m_IsRoadhog = false;
+    private bool m_IsBlocked = false;
 
 }

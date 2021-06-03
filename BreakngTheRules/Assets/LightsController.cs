@@ -44,40 +44,7 @@ public class LightsController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //m_TimeInCurrentInterval += Time.deltaTime;
-
-        //if(m_TimeInCurrentInterval > GreenLightInterval)
-        //{
-        //    m_lightsNorth.SetColor(LightColor.RedYellow);
-        //    m_lightsEast.SetColor(LightColor.Yellow);
-        //    m_lightsSouth.SetColor(LightColor.RedYellow);
-        //    m_lightsWest.SetColor(LightColor.Yellow);
-        //}
-        //else if (m_TimeInCurrentInterval > GreenLightInterval + YellowLightInterval)
-        //{
-        //    m_lightsNorth.SetColor(LightColor.Green);
-        //    m_lightsEast.SetColor(LightColor.Red);
-        //    m_lightsSouth.SetColor(LightColor.Green);
-        //    m_lightsWest.SetColor(LightColor.Red);
-        //}
-        //else if (m_TimeInCurrentInterval > GreenLightInterval + YellowLightInterval + RedLightInterval)
-        //{
-        //    m_lightsNorth.SetColor(LightColor.Yellow);
-        //    m_lightsEast.SetColor(LightColor.RedYellow);
-        //    m_lightsSouth.SetColor(LightColor.Yellow);
-        //    m_lightsWest.SetColor(LightColor.RedYellow);
-        //}
-        //else if (m_TimeInCurrentInterval > GreenLightInterval + YellowLightInterval + RedLightInterval + YellowLightInterval)
-        //{
-        //    m_lightsNorth.SetColor(LightColor.Red);
-        //    m_lightsEast.SetColor(LightColor.Green);
-        //    m_lightsSouth.SetColor(LightColor.Red);
-        //    m_lightsWest.SetColor(LightColor.Green);
-
-        //    m_TimeInCurrentInterval = 0;
-        //}
     }
-
 
     IEnumerator LightsCoroutine()
     {
@@ -110,24 +77,8 @@ public class LightsController : MonoBehaviour
         yield return new WaitForSeconds(YellowLightInterval);
 
         StartCoroutine(LightsCoroutine());
-
-        //m_lightsNorth.SetColor(LightColor.Red);
-        //m_lightsEast.SetColor(LightColor.Green);
-        //m_lightsSouth.SetColor(LightColor.Red);
-        //m_lightsWest.SetColor(LightColor.Green);
-
-
-        //After we have waited 5 seconds print the time again.
-        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
     }
 
-
-
-
-
-
-
-    private float m_TimeInCurrentInterval = 0;
     private TrafficLight m_lightsNorth;
     private TrafficLight m_lightsEast;
     private TrafficLight m_lightsSouth;
