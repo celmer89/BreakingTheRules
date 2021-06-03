@@ -5,6 +5,19 @@ using UnityEngine;
 public class CarController : MonoBehaviour
 {
 
+
+    public float CurrentVelocity = 1.0f;
+    public float AngularVelocity = 1f;
+    public float Acceleration = 1.0f;
+
+    public float TargetVelocity = 5.0f;
+    public float AllowedVelocity = 7.0f;
+    public float RedhogVelocity = 15.0f;
+    public float RedhogDuration = 5.0f;
+    public List<AudioClip> Honks = new List<AudioClip>();
+    public MeshRenderer meshRenderer;
+    public GameObject RedhogHelper;
+
     private void Awake()
     {
         m_rigidBody = GetComponent<Rigidbody>();
@@ -13,35 +26,64 @@ public class CarController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        m_TrafficSystem = GameObject.FindGameObjectsWithTag("TrafficSystem")[0].GetComponent<TrafficSystem>();
+        m_TrafficSystem.RegisterCar(this);
+    }
+
+    void OnDestroy()
+    {
+        m_TrafficSystem.UnregisterCar(this);
+        Debug.Log("car destroyed");
     }
 
     // Update is called once per frame
     void Update()
     {
-        bool stop = m_lightColor == LightColor.Red || m_lightColor == LightColor.Yellow || m_lightColor == LightColor.RedYellow || (m_blockingCars > 0);
+        //chack redhog
+        if(m_IsRoadhog)
+        {
+            m_RedhogeTimeRemaining -= Time.deltaTime;
+            if(m_RedhogeTimeRemaining < 0)
+            {
+                m_IsRoadhog = false;
+                m_RedhogeTimeRemaining = 0f;
+                RedhogHelper.SetActive(false);
+            }
+        }
+
+        bool respectLights = m_lightColor == LightColor.Red || m_lightColor == LightColor.Yellow || m_lightColor == LightColor.RedYellow;
+        if(m_IsRoadhog)
+        {
+            respectLights = false;
+        }
+
+
+        bool stop = respectLights || (m_blockingCars > 0);
         if (stop)
         {
              TargetVelocity = 0;
         }
         else
         {
-            TargetVelocity = AllowedVelocity - Random.Range(0,0.5f);
+            if(m_IsRoadhog)
+            {
+                TargetVelocity = RedhogVelocity - Random.Range(0, 0.5f);
+            }
+            else
+            {
+                TargetVelocity = AllowedVelocity - Random.Range(0, 0.5f);
+            }
         }
 
         // rotate
-       // if (!stop)// dont rotate during stop
-        {
-            Vector3 targetForward = m_destination - transform.position;
-            transform.forward = Vector3.Lerp(transform.forward, targetForward, Time.deltaTime * AngularVelocity);
-        }
+        Vector3 targetForward = m_destination - transform.position;
+        transform.forward = Vector3.Lerp(transform.forward, targetForward, Time.deltaTime * AngularVelocity);
 
         // set velocity
-        CurrentVelocity = Mathf.Lerp(CurrentVelocity, TargetVelocity, Time.deltaTime * Acceleration); // vTargetVelocity;// 
+        CurrentVelocity = Mathf.Lerp(CurrentVelocity, TargetVelocity, Time.deltaTime * Acceleration);
         if (Mathf.Abs(CurrentVelocity) > 0.1) 
         {
             transform.position = transform.position + transform.forward * CurrentVelocity * Time.deltaTime;
-            //m_rigidBody.velocity = transform.forward * CurrentVelocity;
         }
         else
         {
@@ -77,9 +119,16 @@ public class CarController : MonoBehaviour
         AllowedVelocity = velocity;
     }
 
-    public void SetIsRoadhog(bool isRoadhog)
+    public void SetIsRoadhog(bool isRoadhog, float duration)
     {
         m_IsRoadhog = isRoadhog;
+        if(m_IsRoadhog)
+        {
+            RedhogDuration = duration;
+            m_RedhogeTimeRemaining = RedhogDuration;
+            RedhogHelper.SetActive(true);
+            //meshRenderer.material.color = new Color(1f, 1f, 1f, 0.3f);
+        }
     }
 
     public void SetHighlight(bool highlight)
@@ -101,11 +150,6 @@ public class CarController : MonoBehaviour
     {
         if (other.gameObject != gameObject && other.gameObject.tag == "Car" && !other.isTrigger)
         {
-            if (gameObject.name == "Car (2)")
-            {
-                int k = 10;
-            }
-
             m_blockingCars++;
             int it = Random.Range(0, Honks.Count);
             m_AudioSource.PlayOneShot(Honks[it]);
@@ -116,11 +160,6 @@ public class CarController : MonoBehaviour
     {
         if (other.gameObject != gameObject  && other.gameObject.tag == "Car" && !other.isTrigger)
         {
-            if (gameObject.name == "Car (2)")
-            {
-                int k = 10;
-            }
-
             m_blockingCars--;
 
             if (m_blockingCars < 0)
@@ -129,15 +168,6 @@ public class CarController : MonoBehaviour
             }
         }
     }
-
-
-    public float CurrentVelocity = 1.0f;
-    public float AngularVelocity = 1f;
-    public float Acceleration = 1.0f;
-
-    public float TargetVelocity = 5.0f;
-    public float AllowedVelocity = 5.0f;
-    public List<AudioClip> Honks = new List<AudioClip>();
 
     private static bool AlmostEqual(Vector3 v1, Vector3 v2, float precision)
     {
@@ -158,5 +188,7 @@ public class CarController : MonoBehaviour
     private int m_blockingCars = 0;
     private AudioSource m_AudioSource;
     private float m_TimeSinceLastWaypoint = 0;
+    private float m_RedhogeTimeRemaining = 0;
+    TrafficSystem m_TrafficSystem;
 
 }

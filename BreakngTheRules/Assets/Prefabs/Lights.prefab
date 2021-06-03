@@ -109,6 +109,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrafficLightsSouth
       objectReference: {fileID: 0}
+    - target: {fileID: 7887140073350422132, guid: 93dc1a800b5813e47b520d2013ba764b, type: 3}
+      propertyPath: m_Size.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7887140073350422132, guid: 93dc1a800b5813e47b520d2013ba764b, type: 3}
+      propertyPath: m_Size.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7887140073350422132, guid: 93dc1a800b5813e47b520d2013ba764b, type: 3}
+      propertyPath: m_Center.x
+      value: 4.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 7887140073350422132, guid: 93dc1a800b5813e47b520d2013ba764b, type: 3}
+      propertyPath: m_Center.z
+      value: 5.95
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93dc1a800b5813e47b520d2013ba764b, type: 3}
 --- !u!1 &4776231152792955324 stripped
@@ -175,6 +191,22 @@ PrefabInstance:
     - target: {fileID: 5485224438792966020, guid: 93dc1a800b5813e47b520d2013ba764b, type: 3}
       propertyPath: m_Name
       value: TrafficLightsNorth
+      objectReference: {fileID: 0}
+    - target: {fileID: 7887140073350422132, guid: 93dc1a800b5813e47b520d2013ba764b, type: 3}
+      propertyPath: m_Size.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7887140073350422132, guid: 93dc1a800b5813e47b520d2013ba764b, type: 3}
+      propertyPath: m_Size.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7887140073350422132, guid: 93dc1a800b5813e47b520d2013ba764b, type: 3}
+      propertyPath: m_Center.x
+      value: 4.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 7887140073350422132, guid: 93dc1a800b5813e47b520d2013ba764b, type: 3}
+      propertyPath: m_Center.z
+      value: 6.28
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93dc1a800b5813e47b520d2013ba764b, type: 3}
@@ -243,6 +275,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrafficLightsWest
       objectReference: {fileID: 0}
+    - target: {fileID: 7887140073350422132, guid: 93dc1a800b5813e47b520d2013ba764b, type: 3}
+      propertyPath: m_Size.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7887140073350422132, guid: 93dc1a800b5813e47b520d2013ba764b, type: 3}
+      propertyPath: m_Size.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7887140073350422132, guid: 93dc1a800b5813e47b520d2013ba764b, type: 3}
+      propertyPath: m_Center.x
+      value: 4.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7887140073350422132, guid: 93dc1a800b5813e47b520d2013ba764b, type: 3}
+      propertyPath: m_Center.z
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93dc1a800b5813e47b520d2013ba764b, type: 3}
 --- !u!1 &663650935236671002 stripped
@@ -309,6 +357,22 @@ PrefabInstance:
     - target: {fileID: 5485224438792966020, guid: 93dc1a800b5813e47b520d2013ba764b, type: 3}
       propertyPath: m_Name
       value: TrafficLightsEast
+      objectReference: {fileID: 0}
+    - target: {fileID: 7887140073350422132, guid: 93dc1a800b5813e47b520d2013ba764b, type: 3}
+      propertyPath: m_Size.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7887140073350422132, guid: 93dc1a800b5813e47b520d2013ba764b, type: 3}
+      propertyPath: m_Size.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7887140073350422132, guid: 93dc1a800b5813e47b520d2013ba764b, type: 3}
+      propertyPath: m_Center.x
+      value: 4.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 7887140073350422132, guid: 93dc1a800b5813e47b520d2013ba764b, type: 3}
+      propertyPath: m_Center.z
+      value: 6.26
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93dc1a800b5813e47b520d2013ba764b, type: 3}
