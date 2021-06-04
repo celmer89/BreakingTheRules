@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: d556f6e670345584b8c971e770e34b72
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Newsport Demo
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 7049ce5e7501c6940a3cb3dda387c7bd, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -7,13 +7,14 @@ public class GameLogic : MonoBehaviour
 {
     public Texture2D cursorIdleTexture;
     public Texture2D cursorHitTexture;
-    public int Score = 50;
+    public int Score = 100;
+    public int CurrentLevel = 0;
     public int ScorePerCar = 10;
     public int ScoreForMistake = 50;
     private AudioSource audioSource;
     public AudioClip wrong;
     public List<float> LevelThresholds = new List<float>();
-
+    public bool Busted = false;
 
 
     private void Awake()
@@ -39,7 +40,7 @@ public class GameLogic : MonoBehaviour
 
     void Start()
     {
-        m_TrafficSystem.SetChallengeLevel(m_CurrentLevel);
+        m_TrafficSystem.SetChallengeLevel(CurrentLevel);
     }
 
     void Update()
@@ -48,6 +49,16 @@ public class GameLogic : MonoBehaviour
 
         CheckLevelProgress();
 
+        if (Busted)
+        {
+            m_CurrentTimeBusted += Time.deltaTime;
+            if(m_CurrentTimeBusted > m_TimeToDisableBusted)
+            {
+                Busted = false;
+                m_CurrentTimeBusted = 0;
+            }
+        }
+       
         if (Camera.main)
         {
             RaycastHit hit;
@@ -67,6 +78,8 @@ public class GameLogic : MonoBehaviour
                         {
                             m_LastHitCar.Busted();
                             Score += ScorePerCar;
+                            Busted = true;
+                            m_CurrentTimeBusted = 0;
                         }
                         else
                         {
@@ -96,12 +109,13 @@ public class GameLogic : MonoBehaviour
         }
     }
 
+
     private void CheckLevelProgress()
     {
-        if(m_CurrentLevel < LevelThresholds.Count && m_TimeInGame > LevelThresholds[m_CurrentLevel])
+        if(CurrentLevel < LevelThresholds.Count && m_TimeInGame > LevelThresholds[CurrentLevel])
         {
-            m_CurrentLevel++;
-            m_TrafficSystem.SetChallengeLevel(m_CurrentLevel);
+            CurrentLevel++;
+            m_TrafficSystem.SetChallengeLevel(CurrentLevel);
         }
     }
 
@@ -112,8 +126,9 @@ public class GameLogic : MonoBehaviour
 
     private CarController m_LastHitCar = null;
     private float m_TimeInGame = 0f;
-    private int m_CurrentLevel = 0;
     private TrafficSystem m_TrafficSystem;
+    private float m_TimeToDisableBusted = 3;
+    private float m_CurrentTimeBusted = 0;
 }
 
 
