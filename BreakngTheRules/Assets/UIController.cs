@@ -11,9 +11,20 @@ public class UIController : MonoBehaviour
     public Text trafficLevel;
     public Text busted;
 
+    public Text currentCamTxt;
+    public Button unlockCamBtn;
+
     void Start()
     {
         
+    }
+
+    public void UnlockEye()
+    {
+        if (gameLogic.Score > gameLogic.GetCamUnlockCost())
+        {
+            gameLogic.UnlockCamera();
+        }
     }
 
     // Update is called once per frame
@@ -30,5 +41,38 @@ public class UIController : MonoBehaviour
         {
             busted.enabled = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            gameLogic.PrevCam();
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            gameLogic.NextCam();
+        }
+
+
+        if (gameLogic.GetUnlockedCams() == gameLogic.GetTotalCams())
+        {
+            unlockCamBtn.gameObject.SetActive(false);
+        }
+        else
+        {
+            if (gameLogic.Score > gameLogic.GetCamUnlockCost())
+            {
+                unlockCamBtn.interactable = true;
+            }
+            else
+            {
+                unlockCamBtn.interactable = false;
+            }
+        }
+
+        unlockCamBtn.GetComponentInChildren<Text>().text =
+            System.String.Format("Unlock Eye\n${0}", gameLogic.GetCamUnlockCost());
+
+        currentCamTxt.text = 
+            System.String.Format("Eye: {0}/{1}", gameLogic.GetActiveCam() + 1, gameLogic.GetUnlockedCams());
+
     }
 }

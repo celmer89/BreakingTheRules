@@ -16,6 +16,72 @@ public class GameLogic : MonoBehaviour
     public List<float> LevelThresholds = new List<float>();
     public bool Busted = false;
 
+    public List<GameObject> allCams = new List<GameObject>();
+    int unlockedCams = 1;
+    int activeCamIdx = 0;
+    public int camUnlockBaseCost = 20;
+
+    public int GetUnlockedCams()
+    {
+        return unlockedCams;
+    }
+
+    public int GetTotalCams()
+    {
+        return allCams.Count;
+    }
+
+    public int GetActiveCam()
+    {
+        return activeCamIdx;
+    }
+
+    public int GetCamUnlockCost()
+    {
+        return unlockedCams * camUnlockBaseCost;
+    }
+
+    public void UnlockCamera()
+    {
+        if (unlockedCams < allCams.Count)
+        {
+            Score -= GetCamUnlockCost();
+            unlockedCams++;
+        }
+    }
+
+    public void PrevCam()
+    {
+        allCams[activeCamIdx].SetActive(false);
+
+        if (activeCamIdx == 0)
+        {
+            activeCamIdx = unlockedCams - 1;
+        }
+        else
+        {
+            activeCamIdx--;
+        }
+
+        allCams[activeCamIdx].SetActive(true);
+    }
+
+    public void NextCam()
+    {
+        allCams[activeCamIdx].SetActive(false);
+
+        if (activeCamIdx == unlockedCams - 1)
+        {
+            activeCamIdx = 0;
+        }
+        else
+        {
+            activeCamIdx++;
+        }
+
+        allCams[activeCamIdx].SetActive(true);
+    }
+
 
     private void Awake()
     {
@@ -24,6 +90,13 @@ public class GameLogic : MonoBehaviour
         SetBaseCursor();
         audioSource = GetComponent<AudioSource>();
         m_TrafficSystem = GameObject.FindGameObjectsWithTag("TrafficSystem")[0].GetComponent<TrafficSystem>();
+
+        foreach (GameObject c in allCams)
+        {
+            c.SetActive(false);
+        }
+
+        allCams[activeCamIdx].SetActive(true);
     }
 
     private void SetBaseCursor()
