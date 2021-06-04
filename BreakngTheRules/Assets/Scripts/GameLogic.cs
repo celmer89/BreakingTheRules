@@ -22,6 +22,7 @@ public class GameLogic : MonoBehaviour
     int unlockedCams = 1;
     int activeCamIdx = 0;
     public int camUnlockBaseCost = 20;
+    public int Multiplier = 1;
 
     public int GetUnlockedCams()
     {
@@ -176,6 +177,7 @@ public class GameLogic : MonoBehaviour
             if(m_CurrentTimeBusted > m_TimeToDisableBusted)
             {
                 Busted = false;
+                Multiplier = 1;
                 m_CurrentTimeBusted = 0;
             }
         }
@@ -198,7 +200,8 @@ public class GameLogic : MonoBehaviour
                         if (m_LastHitCar.GetIsRoadhog())
                         {
                             m_LastHitCar.Busted();
-                            Score += ScorePerCar;
+                            Score += ScorePerCar * Multiplier;
+                            Multiplier++;
                             Busted = true;
                             m_CurrentTimeBusted = 0;
                         }

@@ -10,6 +10,7 @@ public class UIController : MonoBehaviour
     public Text score;
     public Text trafficLevel;
     public Text busted;
+    public Text multiplier;
     public Text currentCamTxt;
     public Button unlockCamBtn;
     public GameObject gameOver;
@@ -48,6 +49,15 @@ public class UIController : MonoBehaviour
         else
         {
             busted.enabled = false;
+        }
+
+        if(gameLogic.Multiplier > 1)
+        {
+            multiplier.text = "x" + gameLogic.Multiplier + "!";
+        }
+        else
+        {
+            multiplier.text = "";
         }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
