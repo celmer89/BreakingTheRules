@@ -173,7 +173,7 @@ public class CarController : MonoBehaviour
 
     public bool ReachedDestination()
     {
-        return AlmostEqual(m_destination, transform.position, 1f);
+        return AlmostEqual(m_destination, transform.position, 2f);
     }
 
     public void SetLightColor(LightColor color)
