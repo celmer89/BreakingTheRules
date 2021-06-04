@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,9 @@ public class GameLogic : MonoBehaviour
     public int ScoreForMistake = 50;
     private AudioSource audioSource;
     public AudioClip wrong;
+    public List<float> LevelThresholds = new List<float>();
+
+
 
     private void Awake()
     {
@@ -18,6 +22,7 @@ public class GameLogic : MonoBehaviour
         Cursor.visible = true;
         SetBaseCursor();
         audioSource = GetComponent<AudioSource>();
+        m_TrafficSystem = GameObject.FindGameObjectsWithTag("TrafficSystem")[0].GetComponent<TrafficSystem>();
     }
 
     private void SetBaseCursor()
@@ -34,11 +39,15 @@ public class GameLogic : MonoBehaviour
 
     void Start()
     {
-        
+        m_TrafficSystem.SetChallengeLevel(m_CurrentLevel);
     }
 
     void Update()
     {
+        m_TimeInGame += Time.deltaTime;
+
+        CheckLevelProgress();
+
         if (Camera.main)
         {
             RaycastHit hit;
@@ -87,10 +96,25 @@ public class GameLogic : MonoBehaviour
         }
     }
 
-    public static void GameOver()
+    private void CheckLevelProgress()
     {
-            // TODO
+        if(m_CurrentLevel < LevelThresholds.Count && m_TimeInGame > LevelThresholds[m_CurrentLevel])
+        {
+            m_CurrentLevel++;
+            m_TrafficSystem.SetChallengeLevel(m_CurrentLevel);
+        }
+    }
+
+    public void GameOver()
+    {
+        // TODO
     }
 
     private CarController m_LastHitCar = null;
+    private float m_TimeInGame = 0f;
+    private int m_CurrentLevel = 0;
+    private TrafficSystem m_TrafficSystem;
 }
+
+
+
