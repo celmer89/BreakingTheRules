@@ -43603,7 +43603,7 @@ MonoBehaviour:
   Score: 50
   CurrentLevel: 0
   ScorePerCar: 10
-  ScoreForMistake: 50
+  ScoreForMistake: 20
   wrong: {fileID: 8300000, guid: 11767b92d8986cd4cb54269f55ea4935, type: 3}
   LevelThresholds:
   - 30

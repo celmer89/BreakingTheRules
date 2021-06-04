@@ -48,7 +48,7 @@ public class CarController : MonoBehaviour
         if(m_IsRoadhog)
         {
             m_RedhogeTimeRemaining -= Time.deltaTime;
-            if(m_RedhogeTimeRemaining < 0)
+            if(m_RedhogeTimeRemaining < 0 || IsBlocked())
             {
                 m_IsRoadhog = false;
                 m_RedhogeTimeRemaining = 0f;

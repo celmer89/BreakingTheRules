@@ -6,7 +6,6 @@ public class WaypointNavigator : MonoBehaviour
 {
     CarController controller = null;
     public Waypoint currentWaypoint = null;
-    bool returnTrip = false;
 
 
     // Start is called before the first frame update
