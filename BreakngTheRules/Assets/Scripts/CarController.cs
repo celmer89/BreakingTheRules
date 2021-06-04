@@ -206,8 +206,7 @@ public class CarController : MonoBehaviour
         m_IsBusted = true;
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.isKinematic = false;
-        //rb.velocity = (transform.up + new Vector3(Random.Range(-1f,1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f))) * 10;
-        rb.AddExplosionForce(700, transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f)), 30f);
+        rb.AddExplosionForce(700, transform.position + new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), Random.Range(-2f, 2f)), 30f);
         int it = Random.Range(0, Destroys.Count);
         m_AudioSource.PlayOneShot(Destroys[it]);
 

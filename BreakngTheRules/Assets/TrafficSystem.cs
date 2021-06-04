@@ -27,6 +27,47 @@ public class TrafficSystem : MonoBehaviour
         StartCoroutine(RedhogCoroutine());
     }
 
+    public void SetChallengeLevel(int level)
+    {
+        m_ChallengeLevel = level;
+
+        switch(m_ChallengeLevel)
+        {
+            case 0:
+                RoadhogDuration = 5;
+                RoadhogInterval = 5;
+                SetSpawnersFreq(10);
+                break;
+            case 1:
+                RoadhogDuration = 7;
+                RoadhogInterval = 4;
+                SetSpawnersFreq(8);
+                break;
+            case 2:
+                RoadhogDuration = 10;
+                RoadhogInterval = 3;
+                SetSpawnersFreq(6);
+                break;
+            case 3:
+                RoadhogDuration = 12;
+                RoadhogInterval = 2;
+                SetSpawnersFreq(4);
+                break;
+            case 4:
+                RoadhogDuration = 15;
+                RoadhogInterval = 2;
+                SetSpawnersFreq(4);
+                break;
+            case 5:
+                RoadhogDuration = 17;
+                RoadhogInterval = 2;
+                SetSpawnersFreq(3);
+                break;
+            default:
+                break;
+        }
+    }
+
     public void RegisterCar(CarController car)
     {
         Cars.Add(car);
@@ -41,5 +82,15 @@ public class TrafficSystem : MonoBehaviour
     {
         Cars[Random.Range(0, Cars.Count)].SetIsRoadhog(true, RoadhogDuration);
     }
+
+    private void SetSpawnersFreq(float freq)
+    {
+        foreach (CarSpawner spawner in CarSpawners)
+        {
+            spawner.CarSpawnFreq = freq;
+        }
+    }
+
+    private int m_ChallengeLevel = 0;
 
 }

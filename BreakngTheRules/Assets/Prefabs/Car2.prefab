@@ -255,6 +255,16 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 33619e61fd940b04c93c60548d087b98, type: 3}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   Destroys:
   - {fileID: 8300000, guid: 0dac2fd13e855ba43a0365a051faa0bb, type: 3}
   - {fileID: 8300000, guid: fc80ea8f401055a4898ea2a508f4c699, type: 3}
