@@ -80,7 +80,16 @@ public class TrafficSystem : MonoBehaviour
 
     public void PickRedhog()
     {
-        Cars[Random.Range(0, Cars.Count)].SetIsRoadhog(true, RoadhogDuration);
+        int maxRetries = 50;
+        int retry = 0;
+        bool succ = false;
+
+        while (!succ && retry++ < maxRetries)
+        {
+            var car = Cars[Random.Range(0, Cars.Count)];
+            var renderer = car.GetComponentInChildren<Renderer>();
+            succ = renderer && renderer.isVisible && car.SetIsRoadhog(true, RoadhogDuration);
+        }
     }
 
     private void SetSpawnersFreq(float freq)

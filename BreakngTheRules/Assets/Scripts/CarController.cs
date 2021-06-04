@@ -185,14 +185,23 @@ public class CarController : MonoBehaviour
         AllowedVelocity = velocity;
     }
 
-    public void SetIsRoadhog(bool isRoadhog, float duration)
+    public bool SetIsRoadhog(bool isRoadhog, float duration)
     {
-        m_IsRoadhog = isRoadhog;
-        if(m_IsRoadhog)
+        if (IsBlocked())
         {
-            RedhogDuration = duration;
-            m_RedhogeTimeRemaining = RedhogDuration;
-            RedhogHelper.SetActive(true);
+            return false;
+        }
+        else
+        {
+            m_IsRoadhog = isRoadhog;
+            if(m_IsRoadhog)
+            {
+                RedhogDuration = duration;
+                m_RedhogeTimeRemaining = RedhogDuration;
+                RedhogHelper.SetActive(true);
+            }
+
+            return true;
         }
     }
 
