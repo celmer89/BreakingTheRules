@@ -67,7 +67,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 33619e61fd940b04c93c60548d087b98, type: 3}
   - {fileID: 0}
   - {fileID: 0}
-  meshRenderer: {fileID: 0}
+  Destroys:
+  - {fileID: 8300000, guid: 0dac2fd13e855ba43a0365a051faa0bb, type: 3}
+  - {fileID: 8300000, guid: fc80ea8f401055a4898ea2a508f4c699, type: 3}
+  - {fileID: 8300000, guid: 5165b03a51a76214394279457d4f1999, type: 3}
+  - {fileID: 8300000, guid: aa4922e4a788e084d923307d07d73ea0, type: 3}
+  - {fileID: 8300000, guid: 373c7830558962c4b81b07f56baf2d9b, type: 3}
+  - {fileID: 8300000, guid: b7c5b4883ba339e4b9c728f0850f9d06, type: 3}
+  meshRenderer: {fileID: 2822699971587938367, guid: 851ef0768b4aa8a419364cfd3bf0a451, type: 3}
   HighLight: {fileID: 5268388219273006622}
   RedhogHelper: {fileID: 8054021268729273736}
   leftCollider: {fileID: 7833914170105910671}

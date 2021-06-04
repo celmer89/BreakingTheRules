@@ -8,7 +8,7 @@ public class TrafficSystem : MonoBehaviour
     List<CarSpawner> CarSpawners = new List<CarSpawner>();
     List<CarController> Cars = new List<CarController>();
     public float RoadhogDuration = 10;
-    public float RoadhogInterval = 10;
+    public float RoadhogInterval = 1;
 
     void Start()
     {

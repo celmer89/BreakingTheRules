@@ -6,12 +6,18 @@ public class GameLogic : MonoBehaviour
 {
     public Texture2D cursorIdleTexture;
     public Texture2D cursorHitTexture;
+    public int Score = 50;
+    public int ScorePerCar = 10;
+    public int ScoreForMistake = 50;
+    private AudioSource audioSource;
+    public AudioClip wrong;
 
     private void Awake()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         SetBaseCursor();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void SetBaseCursor()
@@ -45,6 +51,25 @@ public class GameLogic : MonoBehaviour
                     SetHitCursor();
                     m_LastHitCar = hit_object.GetComponent<CarController>();
                     m_LastHitCar.SetHighlight(true);
+
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        if (m_LastHitCar.GetIsRoadhog())
+                        {
+                            m_LastHitCar.Busted();
+                            Score += ScorePerCar;
+                        }
+                        else
+                        {
+                            Score -= ScoreForMistake;
+                            audioSource.PlayOneShot(wrong);
+
+                            if (Score < 0)
+                            {
+                                GameOver();
+                            }
+                        }
+                    }
                 }
                 else
                 {
@@ -60,6 +85,11 @@ public class GameLogic : MonoBehaviour
                 SetBaseCursor();
             }
         }
+    }
+
+    public static void GameOver()
+    {
+            // TODO
     }
 
     private CarController m_LastHitCar = null;
