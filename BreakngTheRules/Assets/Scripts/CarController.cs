@@ -161,6 +161,14 @@ public class CarController : MonoBehaviour
             mesh_xform.localPosition = local_pos;
         }
 
+        foreach (Transform xform in transform)
+        {
+            if (xform.gameObject.CompareTag("Flame"))
+            {
+                xform.gameObject.SetActive(m_IsRoadhog);
+            }
+        }
+
         // anti blocking
         if (IsBlocked())
         {
