@@ -58,7 +58,7 @@ MonoBehaviour:
   Acceleration: 5
   TargetVelocity: 6
   AllowedVelocity: 7
-  RedhogVelocity: 16
+  RedhogVelocity: 20
   RedhogDuration: 5
   Honks:
   - {fileID: 8300000, guid: c7a3309822e9f664ab66adb0fcbe101a, type: 3}
