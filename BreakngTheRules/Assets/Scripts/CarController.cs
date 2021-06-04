@@ -132,6 +132,35 @@ public class CarController : MonoBehaviour
             m_rigidBody.velocity = Vector3.zero;
         }
 
+        //
+        // Secondary movement (noise)
+        //
+        bool USE_NOISE = true;
+        if (USE_NOISE)
+        {
+            float RoadhogNoiseSpeed = 8.0f;
+            float RoadhogNoiseAplitude = 1.4f;
+
+            float target_noise = 0.0f;
+
+            var mesh_xform = GetComponentInChildren<Renderer>().gameObject.transform;
+            if (m_IsRoadhog && CurrentVelocity > AllowedVelocity)
+            {
+                target_noise = RoadhogNoiseAplitude * Mathf.Sin(RoadhogNoiseSpeed * Time.time);
+            }
+            else
+            {
+                target_noise = 0.0f;
+            }
+
+            float delta = target_noise - m_CurrentNoiseOffset; 
+            m_CurrentNoiseOffset += delta * Time.deltaTime;
+
+            Vector3 local_pos = mesh_xform.localPosition;
+            local_pos.x = m_CurrentNoiseOffset;
+            mesh_xform.localPosition = local_pos;
+        }
+
         // anti blocking
         if (IsBlocked())
         {
@@ -280,5 +309,6 @@ public class CarController : MonoBehaviour
     private float m_RedhogeTimeRemaining = 0;
     TrafficSystem m_TrafficSystem;
     private bool m_IsBusted = false;
+    private float m_CurrentNoiseOffset = 0.0f;
 
 }
