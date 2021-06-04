@@ -72,7 +72,7 @@ public class UIController : MonoBehaviour
             System.String.Format("Unlock Eye\n${0}", gameLogic.GetCamUnlockCost());
 
         currentCamTxt.text = 
-            System.String.Format("Eye: {0}/{1}", gameLogic.GetActiveCam() + 1, gameLogic.GetUnlockedCams());
+            System.String.Format("Eye: {0}/{1} {2}", gameLogic.GetActiveCam() + 1, gameLogic.GetUnlockedCams(), gameLogic.GetActiveCamDesc());
 
     }
 }

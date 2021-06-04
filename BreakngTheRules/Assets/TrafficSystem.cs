@@ -34,34 +34,49 @@ public class TrafficSystem : MonoBehaviour
         switch(m_ChallengeLevel)
         {
             case 0:
-                RoadhogDuration = 5;
-                RoadhogInterval = 5;
-                SetSpawnersFreq(10);
+                RoadhogDuration = 12;
+                RoadhogInterval = 4;
+                SetSpawnersFreq(12);
                 break;
             case 1:
-                RoadhogDuration = 7;
+                RoadhogDuration = 11;
                 RoadhogInterval = 4;
-                SetSpawnersFreq(8);
+                SetSpawnersFreq(11);
                 break;
             case 2:
-                RoadhogDuration = 10;
+                RoadhogDuration = 9;
                 RoadhogInterval = 3;
-                SetSpawnersFreq(6);
+                SetSpawnersFreq(10);
                 break;
             case 3:
-                RoadhogDuration = 12;
-                RoadhogInterval = 2;
-                SetSpawnersFreq(4);
+                RoadhogDuration = 8;
+                RoadhogInterval = 3;
+                SetSpawnersFreq(9);
                 break;
             case 4:
-                RoadhogDuration = 15;
+                RoadhogDuration = 7;
                 RoadhogInterval = 2;
-                SetSpawnersFreq(4);
+                SetSpawnersFreq(8);
                 break;
             case 5:
-                RoadhogDuration = 17;
+                RoadhogDuration = 6;
                 RoadhogInterval = 2;
-                SetSpawnersFreq(3);
+                SetSpawnersFreq(7);
+                break;
+            case 6:
+                RoadhogDuration = 5;
+                RoadhogInterval = 1;
+                SetSpawnersFreq(6);
+                break;
+            case 7:
+                RoadhogDuration = 5;
+                RoadhogInterval = 1;
+                SetSpawnersFreq(5);
+                break;
+            case 8:
+                RoadhogDuration = 4;
+                RoadhogInterval = 1;
+                SetSpawnersFreq(4);
                 break;
             default:
                 break;
