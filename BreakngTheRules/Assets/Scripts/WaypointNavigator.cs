@@ -6,6 +6,7 @@ public class WaypointNavigator : MonoBehaviour
 {
     CarController controller = null;
     public Waypoint currentWaypoint = null;
+    bool returnTrip = false;
 
 
     // Start is called before the first frame update
@@ -26,11 +27,14 @@ public class WaypointNavigator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(controller.ReachedDestination())
+        if (controller.ReachedDestination())
         {
-            currentWaypoint = currentWaypoint.nextWaypoint;
-            controller.SetDestination(currentWaypoint.GetPosition());
-            controller.SetNextDestination(currentWaypoint.nextWaypoint.GetPosition());
+            if (currentWaypoint.nextWaypoint && currentWaypoint.nextWaypoint.nextWaypoint)
+            {
+                currentWaypoint = currentWaypoint.nextWaypoint;
+                controller.SetDestination(currentWaypoint.GetPosition());
+                controller.SetNextDestination(currentWaypoint.nextWaypoint.GetPosition());
+            }
         }
 
     }
