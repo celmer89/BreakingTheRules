@@ -30,6 +30,7 @@ public class WaypointNavigator : MonoBehaviour
         {
             currentWaypoint = currentWaypoint.nextWaypoint;
             controller.SetDestination(currentWaypoint.GetPosition());
+            controller.SetNextDestination(currentWaypoint.nextWaypoint.GetPosition());
         }
 
     }

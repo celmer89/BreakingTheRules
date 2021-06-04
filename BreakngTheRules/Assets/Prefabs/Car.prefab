@@ -66,11 +66,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 33619e61fd940b04c93c60548d087b98, type: 3}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   meshRenderer: {fileID: 2822699971587938367}
   HighLight: {fileID: 9000100792661313131}
   RedhogHelper: {fileID: 6502764090054170109}
+  leftCollider: {fileID: 6434645227819703802}
 --- !u!114 &2822699970813770892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,8 +123,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.5, y: 2, z: 3.6}
-  m_Center: {x: 0, y: 1, z: 4.63}
+  m_Size: {x: 2.91, y: 2, z: 4.2}
+  m_Center: {x: 0, y: 1, z: 4.88}
 --- !u!82 &866341628843181885
 AudioSource:
   m_ObjectHideFlags: 0
@@ -231,10 +230,10 @@ BoxCollider:
   m_GameObject: {fileID: 2822699970813770897}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 4.27}
-  m_Center: {x: -2.34, y: 1, z: 8.89}
+  m_Size: {x: 4.28, y: 2, z: 9.8}
+  m_Center: {x: -4.03, y: 1, z: 10.02}
 --- !u!1 &2822699971587938305
 GameObject:
   m_ObjectHideFlags: 0
