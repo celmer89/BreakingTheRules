@@ -7,6 +7,7 @@ TagManager:
   - Car
   - TrafficSystem
   - Music
+  - Flame
   layers:
   - Default
   - TransparentFX
