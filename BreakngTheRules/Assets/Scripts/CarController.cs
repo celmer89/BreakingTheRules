@@ -225,8 +225,11 @@ public class CarController : MonoBehaviour
             m_blockingCars++;
             if (m_IsRoadhog)
             {
-                int it = Random.Range(0, Honks.Count);
-                m_AudioSource.PlayOneShot(Honks[it]);
+                if (GetComponentInChildren<Renderer>().isVisible)
+                {
+                    int it = Random.Range(0, Honks.Count);
+                    m_AudioSource.PlayOneShot(Honks[it]);
+                }
             }
         }
     }
