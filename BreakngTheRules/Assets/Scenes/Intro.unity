@@ -18264,6 +18264,7 @@ MonoBehaviour:
   busted: {fileID: 201320410}
   currentCamTxt: {fileID: 0}
   unlockCamBtn: {fileID: 0}
+  gameOver: {fileID: 0}
 --- !u!114 &472125471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34553,6 +34554,8 @@ MonoBehaviour:
   - 60
   - 120
   Busted: 0
+  gameOver: 0
+  MoneyDecreasRatio: 2
   allCams: []
   camUnlockBaseCost: 20
 --- !u!82 &871353624
@@ -85529,7 +85532,7 @@ GameObject:
   - component: {fileID: 2132113305}
   m_Layer: 0
   m_Name: Music
-  m_TagString: Untagged
+  m_TagString: Music
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85546,7 +85549,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6f931b76c499c994ea084d601e105411, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.605
   m_Pitch: 1
   Loop: 1
   Mute: 0

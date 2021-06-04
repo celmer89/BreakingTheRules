@@ -30,13 +30,18 @@ public class CarController : MonoBehaviour
     void Start()
     {
         m_TrafficSystem = GameObject.FindGameObjectsWithTag("TrafficSystem")[0].GetComponent<TrafficSystem>();
-        m_TrafficSystem.RegisterCar(this);
+        if (m_TrafficSystem)
+        {
+            m_TrafficSystem.RegisterCar(this);
+        }    
     }
 
     void OnDestroy()
     {
-        m_TrafficSystem.UnregisterCar(this);
-        Debug.Log("car destroyed");
+        if(m_TrafficSystem)
+        {
+            m_TrafficSystem.UnregisterCar(this);
+        }
     }
 
     // Update is called once per frame
@@ -52,7 +57,7 @@ public class CarController : MonoBehaviour
             {
                 m_IsRoadhog = false;
                 m_RedhogeTimeRemaining = 0f;
-                RedhogHelper.SetActive(false);
+              //  RedhogHelper.SetActive(false);
             }
         }
 
@@ -235,7 +240,7 @@ public class CarController : MonoBehaviour
             {
                 RedhogDuration = duration;
                 m_RedhogeTimeRemaining = RedhogDuration;
-                RedhogHelper.SetActive(true);
+               // RedhogHelper.SetActive(true);
             }
 
             return true;

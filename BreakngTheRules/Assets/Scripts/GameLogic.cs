@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameLogic : MonoBehaviour
 {
@@ -15,7 +16,8 @@ public class GameLogic : MonoBehaviour
     public AudioClip wrong;
     public List<float> LevelThresholds = new List<float>();
     public bool Busted = false;
-
+    public bool gameOver = false;
+    public float MoneyDecreasRatio = 2.0f;
     public List<GameObject> allCams = new List<GameObject>();
     int unlockedCams = 1;
     int activeCamIdx = 0;
@@ -136,12 +138,36 @@ public class GameLogic : MonoBehaviour
     void Start()
     {
         m_TrafficSystem.SetChallengeLevel(CurrentLevel);
+
+        AudioSource music = GameObject.FindGameObjectsWithTag("Music")[0].GetComponent<AudioSource>();
+
+        music.volume = 0.3f;
     }
 
     void Update()
     {
-        m_TimeInGame += Time.deltaTime;
+        if(gameOver)
+        {
+            if(Input.GetKeyDown("space"))
+            {
+                SceneManager.LoadScene(1);
+            }
+            return;
+        }
 
+        //Money decrease
+        m_MoneyDecreasedTime += Time.deltaTime;
+        if (m_MoneyDecreasedTime > MoneyDecreasRatio)
+        {
+            m_MoneyDecreasedTime = 0;
+            Score--;
+            if (Score < 0)
+            {
+                GameOver();
+            }
+        }
+
+        m_TimeInGame += Time.deltaTime;
         CheckLevelProgress();
 
         if (Busted)
@@ -216,7 +242,7 @@ public class GameLogic : MonoBehaviour
 
     public void GameOver()
     {
-        // TODO
+        gameOver = true;
     }
 
     private CarController m_LastHitCar = null;
@@ -224,6 +250,7 @@ public class GameLogic : MonoBehaviour
     private TrafficSystem m_TrafficSystem;
     private float m_TimeToDisableBusted = 3;
     private float m_CurrentTimeBusted = 0;
+    private float m_MoneyDecreasedTime = 0;
 }
 
 
