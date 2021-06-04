@@ -36,6 +36,28 @@ public class GameLogic : MonoBehaviour
         return activeCamIdx;
     }
 
+    public string GetActiveCamDesc()
+    {
+        switch (activeCamIdx)
+        {
+            case 0:
+                return "Crossing A";
+                break;
+            case 1:
+                return "Crossing B";
+                break;
+
+           case 2:
+                return "Highway";
+                break;
+
+            case 3:
+                return "Drone";
+                break;
+        }
+        return "";
+    }
+
     public int GetCamUnlockCost()
     {
         return unlockedCams * camUnlockBaseCost;
